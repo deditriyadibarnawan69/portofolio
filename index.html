@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dedi Triyadi Barnawan — DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { outfit: ['Outfit', 'sans-serif'] },
+        colors: {
+          'bau-bg':     '#F0F0F0',
+          'bau-black':  '#121212',
+          'bau-red':    '#D02020',
+          'bau-blue':   '#1040C0',
+          'bau-yellow': '#F0C020',
+          'bau-muted':  '#E0E0E0',
+        },
+        boxShadow: {
+          'hard-sm':  '3px 3px 0px 0px #121212',
+          'hard-md':  '4px 4px 0px 0px #121212',
+          'hard-lg':  '6px 6px 0px 0px #121212',
+          'hard-xl':  '8px 8px 0px 0px #121212',
+          'hard-sm-w': '3px 3px 0px 0px #ffffff',
+          'hard-md-w': '4px 4px 0px 0px #ffffff',
+        }
+      }
+    }
+  }
+</script>
+<style>
+  * { font-family: 'Outfit', sans-serif; box-sizing: border-box; }
+  body { background: #F0F0F0; color: #121212; margin: 0; padding: 0; }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+  .dot-pattern {
+    background-image: radial-gradient(#121212 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+  .dot-pattern-white {
+    background-image: radial-gradient(rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+  .acc-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+  .acc-content.open { max-height: 320px; }
+  .acc-chevron { transition: transform 0.3s ease-out; }
+  .acc-chevron.open { transform: rotate(180deg); }
+  .btn-press { transition: transform 0.1s ease-out, box-shadow 0.1s ease-out; }
+  .btn-press:active { transform: translate(2px, 2px); box-shadow: none !important; }
+  .card-hover { transition: transform 0.2s ease-out; }
+  .card-hover:hover { transform: translateY(-4px); }
+  .skill-bar-fill { transition: width 0.8s ease-out; }
+  section { border-bottom: 4px solid #121212; }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: #121212; margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+  /* Timeline connector */
+  .timeline-line {
+    position: absolute;
+    left: 31px;
+    top: 64px;
+    bottom: 0;
+    width: 4px;
+    background: #121212;
+  }
+</style>
+</head>
+<body class="font-outfit">
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="bg-bau-bg border-b-4 border-bau-black sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+    <a href="#" class="flex items-center gap-2">
+      <div class="flex items-center gap-1">
+        <div class="w-4 h-4 rounded-full bg-bau-red border-2 border-bau-black"></div>
+        <div class="w-4 h-4 bg-bau-blue border-2 border-bau-black"></div>
+        <div class="w-4 h-4 rotate-45 bg-bau-yellow border-2 border-bau-black -ml-1"></div>
+      </div>
+      <span class="font-black text-lg uppercase tracking-tight">Dedi Triyadi Barnawan</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-0">
+      <li><a href="#about"      class="px-4 py-2 font-bold uppercase text-sm tracking-wider hover:bg-bau-black hover:text-white transition-colors duration-200">About</a></li>
+      <li><a href="#skills"     class="px-4 py-2 font-bold uppercase text-sm tracking-wider hover:bg-bau-black hover:text-white transition-colors duration-200">Skills</a></li>
+      <li><a href="#experience" class="px-4 py-2 font-bold uppercase text-sm tracking-wider hover:bg-bau-black hover:text-white transition-colors duration-200">Experience</a></li>
+      <li><a href="#projects"   class="px-4 py-2 font-bold uppercase text-sm tracking-wider hover:bg-bau-black hover:text-white transition-colors duration-200">Projects</a></li>
+      <li><a href="#contact"    class="ml-4 px-5 py-2 bg-bau-red text-white font-bold uppercase text-sm tracking-wider border-2 border-bau-black shadow-hard-md btn-press">Contact</a></li>
+    </ul>
+    <button id="hamburger-btn" class="md:hidden hamburger p-2" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="flex-col border-t-4 border-bau-black bg-bau-bg md:hidden">
+    <a href="#about"      class="px-6 py-4 font-bold uppercase text-sm tracking-wider border-b-2 border-bau-black hover:bg-bau-black hover:text-white">About</a>
+    <a href="#skills"     class="px-6 py-4 font-bold uppercase text-sm tracking-wider border-b-2 border-bau-black hover:bg-bau-black hover:text-white">Skills</a>
+    <a href="#experience" class="px-6 py-4 font-bold uppercase text-sm tracking-wider border-b-2 border-bau-black hover:bg-bau-black hover:text-white">Experience</a>
+    <a href="#projects"   class="px-6 py-4 font-bold uppercase text-sm tracking-wider border-b-2 border-bau-black hover:bg-bau-black hover:text-white">Projects</a>
+    <a href="#contact"    class="px-6 py-4 font-bold uppercase text-sm tracking-wider bg-bau-red text-white hover:bg-red-700">Contact</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="border-b-4 border-bau-black min-h-screen flex">
+  <div class="max-w-7xl mx-auto w-full flex flex-col lg:flex-row">
+    <div class="flex-1 flex flex-col justify-center px-6 py-16 lg:px-12 lg:py-24">
+      <div class="inline-block mb-6">
+        <span class="bg-bau-yellow border-2 border-bau-black px-4 py-1 font-bold uppercase text-sm tracking-widest shadow-hard-sm">DevOps Engineer · 4+ Years Experience</span>
+      </div>
+      <h1 class="font-black uppercase leading-[0.88] mb-6">
+        <span class="text-5xl sm:text-7xl lg:text-8xl block">BUILD.</span>
+        <span class="text-5xl sm:text-7xl lg:text-8xl block text-bau-blue">DEPLOY.</span>
+        <span class="text-5xl sm:text-7xl lg:text-8xl block text-bau-red">SCALE.</span>
+      </h1>
+      <p class="font-medium text-base lg:text-lg max-w-md mb-3 leading-relaxed text-bau-black/80">
+        Resilient infrastructure is not luck — it's deliberate architecture. I build CI/CD pipelines, container orchestration, and monitoring systems you can trust around the clock.
+      </p>
+      <p class="font-black text-lg lg:text-xl mb-8 tracking-tight">Dedi Triyadi Barnawan</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#projects" class="px-6 py-3 bg-bau-blue text-white font-bold uppercase text-sm tracking-wider border-2 border-bau-black shadow-hard-md btn-press">View Projects</a>
+        <a href="#contact"  class="px-6 py-3 bg-white text-bau-black font-bold uppercase text-sm tracking-wider border-2 border-bau-black shadow-hard-md btn-press">Get in Touch</a>
+      </div>
+    </div>
+    <div class="w-full lg:w-96 xl:w-[480px] bg-bau-blue border-l-0 lg:border-l-4 border-t-4 lg:border-t-0 border-bau-black relative overflow-hidden min-h-72 lg:min-h-0 dot-pattern-white flex items-center justify-center">
+      <div class="absolute top-12 right-12 w-40 h-40 rounded-full border-4 border-white opacity-30"></div>
+      <div class="absolute bottom-20 left-8 w-28 h-28 rotate-45 border-4 border-bau-yellow opacity-50"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 bg-white/10 border-4 border-white"></div>
+      <div class="relative z-10 bg-bau-black border-4 border-bau-yellow shadow-[8px_8px_0px_0px_rgba(240,192,32,0.6)] m-8 w-full max-w-xs">
+        <div class="flex items-center gap-2 px-4 py-3 border-b-2 border-bau-yellow">
+          <div class="w-3 h-3 rounded-full bg-bau-red"></div>
+          <div class="w-3 h-3 rounded-full bg-bau-yellow"></div>
+          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+          <span class="ml-2 text-white/50 text-xs font-mono uppercase tracking-widest">terminal</span>
+        </div>
+        <div class="p-4 text-xs font-mono">
+          <p class="text-green-400">$ kubectl get pods --all-namespaces</p>
+          <p class="text-white/70 mt-1">NAMESPACE &nbsp; NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS</p>
+          <p class="text-white mt-1">production &nbsp; api-<span class="text-bau-yellow">v2</span> &nbsp;&nbsp; <span class="text-green-400">Running</span></p>
+          <p class="text-white">production &nbsp; web-<span class="text-bau-yellow">v3</span> &nbsp;&nbsp; <span class="text-green-400">Running</span></p>
+          <p class="text-white">monitoring &nbsp; prom-<span class="text-bau-yellow">1</span> &nbsp; <span class="text-green-400">Running</span></p>
+          <p class="text-white/40 mt-2 animate-pulse">█</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="bg-bau-yellow border-b-4 border-bau-black">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 lg:grid-cols-4 divide-y-4 lg:divide-y-0 lg:divide-x-4 divide-bau-black">
+      <div class="px-8 py-10 text-center">
+        <p class="font-black text-5xl lg:text-6xl leading-none">4+</p>
+        <p class="font-bold uppercase text-sm tracking-widest mt-2">Years Experience</p>
+      </div>
+      <div class="px-8 py-10 text-center border-l-4 lg:border-l-0 border-bau-black">
+        <p class="font-black text-5xl lg:text-6xl leading-none">80+</p>
+        <p class="font-bold uppercase text-sm tracking-widest mt-2">Microservices</p>
+      </div>
+      <div class="px-8 py-10 text-center">
+        <p class="font-black text-5xl lg:text-6xl leading-none">99.9%</p>
+        <p class="font-bold uppercase text-sm tracking-widest mt-2">Uptime Target</p>
+      </div>
+      <div class="px-8 py-10 text-center border-l-4 lg:border-l-0 border-bau-black">
+        <p class="font-black text-5xl lg:text-6xl leading-none">3</p>
+        <p class="font-bold uppercase text-sm tracking-widest mt-2">Cloud Platforms</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="border-b-4 border-bau-black">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-12 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="relative">
+        <div class="absolute top-4 left-4 w-full h-full bg-bau-red border-4 border-bau-black -z-0"></div>
+        <div class="relative z-10 bg-bau-muted border-4 border-bau-black w-full aspect-square max-w-sm overflow-hidden">
+          <div class="w-full h-full flex items-center justify-center bg-bau-black relative dot-pattern">
+            <div class="absolute top-8 right-8 w-24 h-24 rounded-full bg-bau-blue border-4 border-white opacity-60"></div>
+            <div class="absolute bottom-8 left-8 w-20 h-20 rotate-45 bg-bau-yellow border-4 border-white opacity-60"></div>
+            <div class="relative z-10 text-center">
+              <div class="w-32 h-32 rounded-full bg-bau-muted border-4 border-white mx-auto flex items-center justify-center shadow-[6px_6px_0px_0px_rgba(240,192,32,1)]">
+                <span class="font-black text-4xl text-bau-black">DTB</span>
+              </div>
+              <p class="text-white font-bold mt-4 uppercase tracking-widest text-sm">Dedi Triyadi Barnawan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mb-4">
+          <span class="bg-bau-black text-white px-4 py-1 font-bold uppercase text-xs tracking-widest">About Me</span>
+        </div>
+        <h2 class="font-black text-4xl lg:text-5xl uppercase leading-tight mb-6">
+          Infrastructure as a <span class="text-bau-red">Craft</span>
+        </h2>
+        <p class="font-medium text-base lg:text-lg leading-relaxed mb-4 text-bau-black/80">
+          I'm a DevOps Engineer with 4+ years of hands-on experience building and maintaining production systems that serve hundreds of thousands of users. Based in Bandung, currently at PT. Pinteraktif Media.
+        </p>
+        <p class="font-medium text-base lg:text-lg leading-relaxed mb-8 text-bau-black/80">
+          My focus is on GitLab CI/CD, Docker Swarm orchestrating 80+ microservices, Kubernetes, a full Prometheus/Grafana/Loki observability stack, and cloud infrastructure across DigitalOcean, AWS, and GCP.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="bg-bau-blue text-white px-4 py-2 font-bold text-sm uppercase border-2 border-bau-black shadow-hard-sm">UNIKOM Bandung</span>
+          <span class="bg-bau-yellow text-bau-black px-4 py-2 font-bold text-sm uppercase border-2 border-bau-black shadow-hard-sm">Alibaba Cloud Certified</span>
+          <span class="border-2 border-bau-black px-4 py-2 font-bold text-sm uppercase shadow-hard-sm">DevSecOps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="border-b-4 border-bau-black bg-bau-bg">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-12 lg:py-24">
+    <div class="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div>
+        <span class="bg-bau-black text-white px-4 py-1 font-bold uppercase text-xs tracking-widest">Tech Stack</span>
+        <h2 class="font-black text-4xl lg:text-6xl uppercase leading-tight mt-3">SKILLS &<br>TOOLS</h2>
+      </div>
+      <p class="font-medium text-base max-w-xs text-bau-black/70 leading-relaxed">
+        From CI/CD pipelines to full observability — the primary weapons in my DevOps arsenal.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative">
+        <div class="absolute top-0 right-0 w-6 h-6 bg-bau-blue border-l-4 border-b-4 border-bau-black"></div>
+        <div class="p-6">
+          <div class="w-12 h-12 bg-bau-blue border-2 border-bau-black flex items-center justify-center mb-4 shadow-hard-sm">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3 class="font-black text-xl uppercase mb-4">Container & Orchestration</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Docker / Compose</span><span class="font-bold text-sm">95%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-blue skill-bar-fill" style="width:95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Docker Swarm</span><span class="font-bold text-sm">90%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-blue skill-bar-fill" style="width:90%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Kubernetes / MicroK8s</span><span class="font-bold text-sm">75%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-blue skill-bar-fill" style="width:75%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative">
+        <div class="absolute top-0 right-0 w-6 h-6 bg-bau-red border-l-4 border-b-4 border-bau-black"></div>
+        <div class="p-6">
+          <div class="w-12 h-12 bg-bau-red border-2 border-bau-black flex items-center justify-center mb-4 shadow-hard-sm">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="font-black text-xl uppercase mb-4">CI/CD Pipeline</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">GitLab CI/CD</span><span class="font-bold text-sm">95%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-red skill-bar-fill" style="width:95%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Jenkins</span><span class="font-bold text-sm">80%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-red skill-bar-fill" style="width:80%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Ansible / Terraform</span><span class="font-bold text-sm">75%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-red skill-bar-fill" style="width:75%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative">
+        <div class="absolute top-0 right-0 w-6 h-6 bg-bau-yellow border-l-4 border-b-4 border-bau-black"></div>
+        <div class="p-6">
+          <div class="w-12 h-12 bg-bau-yellow border-2 border-bau-black flex items-center justify-center mb-4 shadow-hard-sm">
+            <svg class="w-6 h-6 text-bau-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 class="font-black text-xl uppercase mb-4">Monitoring & Observability</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Prometheus</span><span class="font-bold text-sm">85%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-yellow skill-bar-fill" style="width:85%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Grafana</span><span class="font-bold text-sm">88%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-yellow skill-bar-fill" style="width:88%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span class="font-bold text-sm uppercase">Loki</span><span class="font-bold text-sm">80%</span></div>
+              <div class="h-3 bg-bau-muted border-2 border-bau-black"><div class="h-full bg-bau-yellow skill-bar-fill" style="width:80%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative">
+        <div class="absolute top-0 right-0 w-6 h-6 bg-bau-blue border-l-4 border-b-4 border-bau-black"></div>
+        <div class="p-6">
+          <div class="w-12 h-12 bg-bau-black border-2 border-bau-black flex items-center justify-center mb-4 shadow-hard-sm">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <h3 class="font-black text-xl uppercase mb-4">Cloud Platforms</h3>
+          <div class="flex flex-wrap gap-2 mt-2">
+            <span class="bg-bau-black text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">DigitalOcean</span>
+            <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">AWS</span>
+            <span class="bg-bau-red text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">GCP</span>
+            <span class="bg-bau-yellow text-bau-black px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Alibaba Cloud</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">Proxmox</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative">
+        <div class="absolute top-0 right-0 w-6 h-6 bg-bau-red border-l-4 border-b-4 border-bau-black"></div>
+        <div class="p-6">
+          <div class="w-12 h-12 bg-bau-red border-2 border-bau-black flex items-center justify-center mb-4 shadow-hard-sm">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="font-black text-xl uppercase mb-4">DevSecOps</h3>
+          <div class="flex flex-wrap gap-2 mt-2">
+            <span class="bg-bau-red text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">SonarQube</span>
+            <span class="bg-bau-red text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Trivy</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">WireGuard</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">OpenVPN</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">OWASP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative">
+        <div class="absolute top-0 right-0 w-6 h-6 bg-bau-yellow border-l-4 border-b-4 border-bau-black"></div>
+        <div class="p-6">
+          <div class="w-12 h-12 bg-bau-yellow border-2 border-bau-black flex items-center justify-center mb-4 shadow-hard-sm">
+            <svg class="w-6 h-6 text-bau-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <h3 class="font-black text-xl uppercase mb-4">IaC & Automation</h3>
+          <div class="flex flex-wrap gap-2 mt-2">
+            <span class="bg-bau-yellow text-bau-black px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Terraform</span>
+            <span class="bg-bau-yellow text-bau-black px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Ansible</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">Bash Script</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">MinIO</span>
+            <span class="border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">Nginx</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience" class="bg-bau-red border-b-4 border-bau-black">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-12 lg:py-24">
+
+    <div class="mb-12">
+      <span class="bg-bau-yellow border-2 border-bau-black px-4 py-1 font-bold uppercase text-xs tracking-widest shadow-hard-sm">Career Timeline</span>
+      <h2 class="font-black text-4xl lg:text-6xl uppercase leading-tight mt-3 text-white">WORK<br>EXPERIENCE</h2>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Vertical line (desktop) -->
+      <div class="hidden lg:block absolute left-[31px] top-[64px] bottom-8 w-1 bg-bau-black"></div>
+
+      <div class="space-y-8">
+
+        <!-- Job 1: Pinteraktif (current) -->
+        <div class="flex flex-col lg:flex-row gap-0 lg:gap-8">
+          <!-- Timeline dot -->
+          <div class="hidden lg:flex flex-col items-center flex-shrink-0 w-16">
+            <div class="w-16 h-16 bg-bau-blue border-4 border-bau-black flex items-center justify-center shadow-hard-md z-10 relative">
+              <span class="font-black text-white text-base">PI</span>
+            </div>
+          </div>
+          <!-- Card -->
+          <div class="flex-1 bg-white border-4 border-bau-black shadow-hard-xl card-hover">
+            <div class="bg-bau-blue px-6 py-4 border-b-4 border-bau-black flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div class="flex items-center gap-3">
+                <div class="lg:hidden w-10 h-10 bg-white border-2 border-white flex items-center justify-center">
+                  <span class="font-black text-bau-blue text-sm">PI</span>
+                </div>
+                <div>
+                  <h3 class="font-black text-white text-xl uppercase">DevOps Engineer</h3>
+                  <p class="font-bold text-white/80 text-sm uppercase tracking-wider">PT. Pinteraktif Media · Bandung</p>
+                </div>
+              </div>
+              <span class="bg-bau-yellow border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase tracking-wider shadow-hard-sm self-start whitespace-nowrap">Sep 2021 – Present</span>
+            </div>
+            <div class="p-6 lg:p-8">
+              <div class="grid sm:grid-cols-2 gap-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 bg-bau-blue border-2 border-bau-black flex-shrink-0"></div>
+                  <span class="font-bold text-xs uppercase tracking-wider text-bau-black/60">Full-time · Remote</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-green-500 border-2 border-bau-black flex-shrink-0 animate-pulse"></div>
+                  <span class="font-bold text-xs uppercase tracking-wider text-bau-black/60">Current Position</span>
+                </div>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex gap-3"><span class="font-black text-bau-blue flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Built and maintained 80+ microservices on Docker Swarm cluster, consistently hitting 99.9% uptime targets</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-blue flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Designed end-to-end GitLab CI/CD pipelines for the entire engineering team — from unit tests to production deployment</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-blue flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Implemented full observability stack: Prometheus + Grafana + Loki for metrics, alerting, and log aggregation</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-blue flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Set up VPN infrastructure with WireGuard and OpenVPN for secure remote access across teams</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-blue flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Integrated DevSecOps toolchain: SonarQube for code quality gates and Trivy for container vulnerability scanning</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-blue flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Managed MariaDB backup automation pipelines with Jenkins, SCP transfer, and MinIO S3 storage</span></li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-6">
+                <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Docker Swarm</span>
+                <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">GitLab CI</span>
+                <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Kubernetes</span>
+                <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Prometheus</span>
+                <!-- <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Terraform</span> -->
+                <span class="bg-bau-blue text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Ansible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 2: Ingotalk Internship -->
+        <div class="flex flex-col lg:flex-row gap-0 lg:gap-8">
+          <!-- Timeline dot -->
+          <div class="hidden lg:flex flex-col items-center flex-shrink-0 w-16">
+            <div class="w-16 h-16 bg-bau-yellow border-4 border-bau-black flex items-center justify-center shadow-hard-md z-10 relative">
+              <span class="font-black text-bau-black text-base">IT</span>
+            </div>
+          </div>
+          <!-- Card -->
+          <div class="flex-1 bg-white border-4 border-bau-black shadow-hard-xl card-hover">
+            <div class="bg-bau-yellow px-6 py-4 border-b-4 border-bau-black flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div class="flex items-center gap-3">
+                <div class="lg:hidden w-10 h-10 bg-bau-black border-2 border-bau-black flex items-center justify-center">
+                  <span class="font-black text-bau-yellow text-sm">IT</span>
+                </div>
+                <div>
+                  <h3 class="font-black text-bau-black text-xl uppercase">DevOps Engineer Intern - Remote</h3>
+                  <p class="font-bold text-bau-black/70 text-sm uppercase tracking-wider">Ingotalk · Indonesia</p>
+                </div>
+              </div>
+              <span class="bg-bau-black text-white border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase tracking-wider shadow-hard-sm self-start whitespace-nowrap">Jun 2021 – Aug 2021</span>
+            </div>
+            <div class="p-6 lg:p-8">
+              <div class="grid sm:grid-cols-2 gap-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 bg-bau-yellow border-2 border-bau-black flex-shrink-0"></div>
+                  <span class="font-bold text-xs uppercase tracking-wider text-bau-black/60">Internship</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 bg-bau-black border-2 border-bau-black flex-shrink-0"></div>
+                  <span class="font-bold text-xs uppercase tracking-wider text-bau-black/60">3 Months</span>
+                </div>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex gap-3"><span class="font-black text-bau-black flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Assisted in setting up and managing containerized deployment environments using Docker</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-black flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Supported CI/CD pipeline configuration and troubleshooting for the engineering team</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-black flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Gained hands-on experience with Linux server administration and shell scripting for automation tasks</span></li>
+                <li class="flex gap-3"><span class="font-black text-bau-black flex-shrink-0 text-lg leading-tight">→</span><span class="font-medium">Contributed to monitoring and log management setup to improve system visibility</span></li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-6">
+                <span class="bg-bau-black text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Docker</span>
+                <span class="bg-bau-black text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">CI/CD</span>
+                <span class="bg-bau-black text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Linux</span>
+                <span class="bg-bau-black text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Bash</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects" class="border-b-4 border-bau-black bg-bau-bg">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-12 lg:py-24">
+    <div class="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div>
+        <span class="bg-bau-black text-white px-4 py-1 font-bold uppercase text-xs tracking-widest">Portfolio</span>
+        <h2 class="font-black text-4xl lg:text-6xl uppercase leading-tight mt-3">SELECTED<br>PROJECTS</h2>
+      </div>
+      <p class="font-medium text-base max-w-xs text-bau-black/70 leading-relaxed">
+        Not just showcases — proof that systems can be built reliably and at scale.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <div class="bg-bau-black text-white border-4 border-bau-black shadow-hard-xl card-hover relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-bau-blue opacity-50 rotate-45 translate-x-6 -translate-y-6"></div>
+        <div class="p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-bau-blue border-2 border-white flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <span class="bg-bau-blue px-3 py-1 font-bold text-xs uppercase border border-white">Docker Swarm</span>
+          </div>
+          <h3 class="font-black text-2xl uppercase mb-3">80+ Microservices Orchestration</h3>
+          <p class="text-white/70 font-medium mb-6 leading-relaxed">Production Docker Swarm architecture for the company's core platform. Covers service discovery, load balancing, health checks, and zero-downtime rolling deployment strategy.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-bau-blue/30 border border-white/30 text-white px-3 py-1 font-bold text-xs uppercase">Docker Swarm</span>
+            <span class="bg-bau-blue/30 border border-white/30 text-white px-3 py-1 font-bold text-xs uppercase">Nginx Proxy</span>
+            <span class="bg-bau-blue/30 border border-white/30 text-white px-3 py-1 font-bold text-xs uppercase">Traefik</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-bau-yellow opacity-50 rotate-45 translate-x-6 -translate-y-6"></div>
+        <div class="p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-bau-yellow border-2 border-bau-black flex items-center justify-center">
+              <svg class="w-5 h-5 text-bau-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <span class="bg-bau-yellow text-bau-black px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">Monitoring</span>
+          </div>
+          <h3 class="font-black text-2xl uppercase mb-3">Full Observability Stack</h3>
+          <p class="text-bau-black/70 font-medium mb-6 leading-relaxed">Unified monitoring with Prometheus + Grafana + Loki + Alertmanager. Custom dashboards per layer — infra, application, and business metrics — with Telegram alerting.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-bau-yellow border-2 border-bau-black text-bau-black px-3 py-1 font-bold text-xs uppercase">Prometheus</span>
+            <span class="bg-bau-yellow border-2 border-bau-black text-bau-black px-3 py-1 font-bold text-xs uppercase">Grafana</span>
+            <span class="bg-bau-yellow border-2 border-bau-black text-bau-black px-3 py-1 font-bold text-xs uppercase">Loki</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl card-hover relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-bau-red opacity-40 rotate-45 translate-x-6 -translate-y-6"></div>
+        <div class="p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-bau-red border-2 border-bau-black flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="bg-bau-red text-white px-3 py-1 font-bold text-xs uppercase border-2 border-bau-black">CI/CD</span>
+          </div>
+          <h3 class="font-black text-2xl uppercase mb-3">MariaDB Backup Automation</h3>
+          <p class="text-bau-black/70 font-medium mb-6 leading-relaxed">Comprehensive Bash script suite for MariaDB: backup, verify, SCP transfer, restore, and S3 upload via MinIO — orchestrated through Jenkins pipelines with Telegram failure notifications.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-bau-red text-white border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">Jenkins</span>
+            <span class="bg-bau-red text-white border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">MariaDB</span>
+            <span class="bg-bau-red text-white border-2 border-bau-black px-3 py-1 font-bold text-xs uppercase">MinIO S3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-bau-blue text-white border-4 border-bau-black shadow-hard-xl card-hover relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-16 h-16 bg-white opacity-10 rotate-45 translate-x-6 -translate-y-6"></div>
+        <div class="p-6 lg:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-white border-2 border-white flex items-center justify-center">
+              <svg class="w-5 h-5 text-bau-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="bg-white text-bau-blue px-3 py-1 font-bold text-xs uppercase border border-white">DevSecOps</span>
+          </div>
+          <h3 class="font-black text-2xl uppercase mb-3">GitLab CI/CD + DevSecOps</h3>
+          <p class="text-white/70 font-medium mb-6 leading-relaxed">End-to-end GitLab CI/CD pipeline with SonarQube integration for code analysis and Trivy for container scanning. Every merge request is validated automatically before reaching production.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-white/20 border border-white/40 text-white px-3 py-1 font-bold text-xs uppercase">GitLab CI</span>
+            <span class="bg-white/20 border border-white/40 text-white px-3 py-1 font-bold text-xs uppercase">SonarQube</span>
+            <span class="bg-white/20 border border-white/40 text-white px-3 py-1 font-bold text-xs uppercase">Trivy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="border-b-4 border-bau-black bg-bau-bg">
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-12 lg:py-24">
+    <div class="mb-12">
+      <span class="bg-bau-black text-white px-4 py-1 font-bold uppercase text-xs tracking-widest">FAQ</span>
+      <h2 class="font-black text-4xl lg:text-6xl uppercase leading-tight mt-3">COMMON<br>QUESTIONS</h2>
+    </div>
+    <div class="space-y-4 max-w-4xl">
+
+      <div class="accordion border-4 border-bau-black shadow-hard-md bg-white">
+        <button class="acc-btn w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleAcc(this)">
+          <span class="font-black text-base lg:text-lg uppercase">What sets your DevOps approach apart?</span>
+          <svg class="acc-chevron w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-content border-t-4 border-bau-black bg-yellow-50">
+          <p class="px-6 py-5 font-medium leading-relaxed">I believe good infrastructure is invisible — if the dev team can focus on shipping features without worrying about deployments and servers, DevOps has done its job. I always prioritize automation, observability, and clear documentation that survives engineer turnover.</p>
+        </div>
+      </div>
+
+      <div class="accordion border-4 border-bau-black shadow-hard-md bg-white">
+        <button class="acc-btn w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleAcc(this)">
+          <span class="font-black text-base lg:text-lg uppercase">Are you open to remote work or relocation?</span>
+          <svg class="acc-chevron w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-content border-t-4 border-bau-black bg-yellow-50">
+          <p class="px-6 py-5 font-medium leading-relaxed">Yes, I'm very open to remote positions. Relocation can be discussed depending on the opportunity and team. Based in Bandung, but my workflow is built for async collaboration — documentation-first, async-friendly, clear communication.</p>
+        </div>
+      </div>
+
+      <div class="accordion border-4 border-bau-black shadow-hard-md bg-white">
+        <button class="acc-btn w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleAcc(this)">
+          <span class="font-black text-base lg:text-lg uppercase">Which deployment strategies are you most comfortable with?</span>
+          <svg class="acc-chevron w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-content border-t-4 border-bau-black bg-yellow-50">
+          <p class="px-6 py-5 font-medium leading-relaxed">Most comfortable with Rolling Update and Blue/Green deployments via Docker Swarm and Kubernetes. For GitOps, I'm familiar with ArgoCD concepts and Atlantis for Terraform drift detection — and I enjoy learning new tooling when the team has different preferences.</p>
+        </div>
+      </div>
+
+      <div class="accordion border-4 border-bau-black shadow-hard-md bg-white">
+        <button class="acc-btn w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleAcc(this)">
+          <span class="font-black text-base lg:text-lg uppercase">What's the best way to reach you?</span>
+          <svg class="acc-chevron w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-content border-t-4 border-bau-black bg-yellow-50">
+          <p class="px-6 py-5 font-medium leading-relaxed">Email is best for serious discussions about opportunities. I'm also active on LinkedIn. Response time is typically within 24 hours on weekdays. For a quicker intro, the contact form below works great too.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="bg-bau-yellow border-b-4 border-bau-black relative overflow-hidden">
+  <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full border-8 border-bau-black opacity-10"></div>
+  <div class="absolute -bottom-16 -left-16 w-48 h-48 rotate-45 bg-bau-black opacity-10"></div>
+  <div class="max-w-7xl mx-auto px-6 py-16 lg:px-12 lg:py-24 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <span class="bg-bau-black text-white px-4 py-1 font-bold uppercase text-xs tracking-widest">Let's Build</span>
+        <h2 class="font-black text-4xl lg:text-6xl uppercase leading-tight mt-3 mb-6">READY TO<br>COLLABORATE?</h2>
+        <p class="font-medium text-base lg:text-lg leading-relaxed mb-8 text-bau-black/80 max-w-md">
+          Need a DevOps Engineer who can make your infrastructure rock-solid, your CI/CD pipelines fast, and your monitoring reliable enough to sleep through the night? Let's talk.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="mailto:dedi.triyadi.barnawan@gmail.com" class="px-6 py-4 bg-bau-black text-white font-bold uppercase text-sm tracking-wider border-2 border-bau-black shadow-hard-md btn-press text-center">
+            ✉ Send Email
+          </a>
+          <a href="https://linkedin.com/in/deditriyadi" target="_blank" class="px-6 py-4 bg-white text-bau-black font-bold uppercase text-sm tracking-wider border-2 border-bau-black shadow-hard-md btn-press text-center">
+            LinkedIn Profile →
+          </a>
+        </div>
+      </div>
+      <div class="bg-white border-4 border-bau-black shadow-hard-xl">
+        <div class="bg-bau-black px-6 py-4 border-b-4 border-bau-black">
+          <h3 class="font-black text-white uppercase tracking-wider">Send a Message</h3>
+        </div>
+        <div class="p-6 lg:p-8 space-y-4">
+          <div>
+            <label class="block font-bold uppercase text-xs tracking-widest mb-2">Your Name</label>
+            <input type="text" placeholder="Full name" class="w-full border-2 border-bau-black px-4 py-3 font-medium bg-bau-bg focus:outline-none focus:border-bau-blue focus:shadow-hard-sm transition-shadow">
+          </div>
+          <div>
+            <label class="block font-bold uppercase text-xs tracking-widest mb-2">Email</label>
+            <input type="email" placeholder="email@company.com" class="w-full border-2 border-bau-black px-4 py-3 font-medium bg-bau-bg focus:outline-none focus:border-bau-blue focus:shadow-hard-sm transition-shadow">
+          </div>
+          <div>
+            <label class="block font-bold uppercase text-xs tracking-widest mb-2">Message</label>
+            <textarea rows="4" placeholder="Tell me about your project or role..." class="w-full border-2 border-bau-black px-4 py-3 font-medium bg-bau-bg focus:outline-none focus:border-bau-blue focus:shadow-hard-sm transition-shadow resize-none"></textarea>
+          </div>
+          <button class="w-full px-6 py-4 bg-bau-red text-white font-bold uppercase tracking-wider border-2 border-bau-black shadow-hard-md btn-press">
+            Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-bau-black text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-16">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="flex items-center gap-1">
+            <div class="w-4 h-4 rounded-full bg-bau-red border-2 border-white"></div>
+            <div class="w-4 h-4 bg-bau-blue border-2 border-white"></div>
+            <div class="w-4 h-4 rotate-45 bg-bau-yellow border-2 border-white -ml-1"></div>
+          </div>
+          <span class="font-black text-lg uppercase tracking-tight">Dedi Triyadi Barnawan</span>
+        </div>
+        <p class="font-medium text-white/60 text-sm">DevOps Engineer · Bandung, Indonesia</p>
+        <p class="font-medium text-white/40 text-xs mt-1">Build · Deploy · Scale · Repeat</p>
+      </div>
+      <ul class="flex flex-wrap gap-4 lg:gap-6">
+        <li><a href="#about"      class="font-bold uppercase text-sm tracking-wider text-white/70 hover:text-bau-yellow transition-colors">About</a></li>
+        <li><a href="#skills"     class="font-bold uppercase text-sm tracking-wider text-white/70 hover:text-bau-yellow transition-colors">Skills</a></li>
+        <li><a href="#experience" class="font-bold uppercase text-sm tracking-wider text-white/70 hover:text-bau-yellow transition-colors">Experience</a></li>
+        <li><a href="#projects"   class="font-bold uppercase text-sm tracking-wider text-white/70 hover:text-bau-yellow transition-colors">Projects</a></li>
+        <li><a href="#contact"    class="font-bold uppercase text-sm tracking-wider text-white/70 hover:text-bau-yellow transition-colors">Contact</a></li>
+      </ul>
+    </div>
+    <div class="mt-12 pt-8 border-t-2 border-white/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <p class="text-white/40 text-sm font-medium">© 2024 Dedi Triyadi Barnawan. Built with ❤️ and a lot of <code class="text-bau-yellow">kubectl get pods</code></p>
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+        <span class="text-white/50 text-xs font-medium uppercase tracking-wider">Available for hire</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  function toggleAcc(button) {
+    const content = button.nextElementSibling;
+    const chevron = button.querySelector('.acc-chevron');
+    const parent  = button.parentElement;
+    const isOpen  = content.classList.contains('open');
+    document.querySelectorAll('.acc-content.open').forEach(c => {
+      c.classList.remove('open');
+      c.previousElementSibling.querySelector('.acc-chevron').classList.remove('open');
+      c.closest('.accordion').style.background = '';
+    });
+    if (!isOpen) {
+      content.classList.add('open');
+      chevron.classList.add('open');
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  const skillFills = document.querySelectorAll('.skill-bar-fill');
+  const widths = Array.from(skillFills).map(el => el.style.width);
+  skillFills.forEach(el => el.style.width = '0');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        skillFills.forEach((el, i) => setTimeout(() => { el.style.width = widths[i]; }, i * 100));
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  const skillSection = document.getElementById('skills');
+  if (skillSection) observer.observe(skillSection);
+</script>
+</body>
+</html>
